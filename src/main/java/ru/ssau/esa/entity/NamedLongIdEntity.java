@@ -5,11 +5,11 @@ import javax.persistence.*;
 @MappedSuperclass
 public class NamedLongIdEntity {
     @Id
-    @Column(name = "ID", nullable = false, unique = true)
+    @Column(name = "id", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
-    @Column(name="NAME")
+    @Column(name="name")
     protected String name;
 
     public Long getId() {

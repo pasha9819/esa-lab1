@@ -1,9 +1,20 @@
 package ru.ssau.esa.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "animal", schema = "public")
 public class Animal extends NamedLongIdEntity {
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "farmer_id")
     private Farmer farmer;
-    private AnimalType animalType;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "type_id")
+    private AnimalType type;
+
+    @Column(name = "weight")
     private double weight;
 
     public Farmer getFarmer() {
@@ -14,12 +25,12 @@ public class Animal extends NamedLongIdEntity {
         this.farmer = farmer;
     }
 
-    public AnimalType getAnimalType() {
-        return animalType;
+    public AnimalType getType() {
+        return type;
     }
 
-    public void setAnimalType(AnimalType animalType) {
-        this.animalType = animalType;
+    public void setType(AnimalType type) {
+        this.type = type;
     }
 
     public double getWeight() {
@@ -28,5 +39,18 @@ public class Animal extends NamedLongIdEntity {
 
     public void setWeight(double weight) {
         this.weight = weight;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Animal animal = (Animal) o;
+        return id.equals(animal.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 }
