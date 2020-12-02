@@ -44,7 +44,7 @@
         <div class="creation-form">
             <div class="input-form">
                 <label for="name">Название</label>
-                <input id="name" animalType="text" v-model="name">
+                <input id="name" type="text" v-model="name">
             </div>
             <div class="input-form">
                 <button style="margin: auto" @click="addAnimalType">Добавить вид животного</button>
@@ -52,7 +52,7 @@
         </div>
     </div>
 </div>
-<script animalType="text/javascript">
+<script type="text/javascript">
     var SERVER_ERROR_MESSAGE = "Server error";
     var vue = new Vue({
         el: "#content",

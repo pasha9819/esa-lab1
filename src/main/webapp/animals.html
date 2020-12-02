@@ -50,11 +50,11 @@
         <div class="creation-form">
             <div class="input-form">
                 <label for="name">Имя</label>
-                <input id="name" animalType="text" v-model="name">
+                <input id="name" type="text" v-model="name">
             </div>
             <div class="input-form">
                 <label for="weight">Вес</label>
-                <input id="weight" animalType="text" v-model="weight">
+                <input id="weight" type="text" v-model="weight">
             </div>
             <div class="input-form">
                 <label for="animalType">Вид животных</label>
@@ -74,7 +74,7 @@
         </div>
     </div>
 </div>
-<script animalType="text/javascript">
+<script type="text/javascript">
     var SERVER_ERROR_MESSAGE = "Server error";
     var vue = new Vue({
         el: "#content",
