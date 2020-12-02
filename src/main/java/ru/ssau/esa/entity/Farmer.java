@@ -1,7 +1,7 @@
 package ru.ssau.esa.entity;
 
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +16,7 @@ public class Farmer extends NamedLongIdEntity{
     @Column(name = "surname")
     private String surname;
 
-    @Expose(serialize = false, deserialize = false)
+    @JsonIgnore
     @OneToMany(mappedBy = "farmer")
     private List<Animal> animals;
 

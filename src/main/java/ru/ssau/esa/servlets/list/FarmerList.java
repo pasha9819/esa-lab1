@@ -1,6 +1,6 @@
 package ru.ssau.esa.servlets.list;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.ssau.esa.bean.FarmerDaoBean;
 import ru.ssau.esa.entity.Farmer;
 
@@ -21,9 +21,12 @@ public class FarmerList extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("application/json; charset=UTF-8");
         List<Farmer> farmers = farmerDaoBean.findAll();
-        Gson converter = new Gson();
-        resp.getWriter().print(converter.toJson(farmers));
+        ObjectMapper mapper = new ObjectMapper();
+        String answer = mapper.writeValueAsString(farmers);
+        resp.getWriter().print(answer);
     }
 
 }

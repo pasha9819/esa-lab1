@@ -1,6 +1,6 @@
 package ru.ssau.esa.entity;
 
-import com.google.gson.annotations.Expose;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -11,8 +11,8 @@ import java.util.List;
 @Table(name = "type", schema = "public")
 public class AnimalType extends NamedLongIdEntity{
 
-    @Expose(serialize = false, deserialize = false)
-    @OneToMany(mappedBy = "type")
+    @JsonIgnore
+    @OneToMany(mappedBy = "animalType")
     private List<Animal> animals;
 
     public List<Animal> getAnimals() {

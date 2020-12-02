@@ -12,7 +12,7 @@ public class Animal extends NamedLongIdEntity {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "type_id")
-    private AnimalType type;
+    private AnimalType animalType;
 
     @Column(name = "weight")
     private double weight;
@@ -25,12 +25,12 @@ public class Animal extends NamedLongIdEntity {
         this.farmer = farmer;
     }
 
-    public AnimalType getType() {
-        return type;
+    public AnimalType getAnimalType() {
+        return animalType;
     }
 
-    public void setType(AnimalType type) {
-        this.type = type;
+    public void setAnimalType(AnimalType animalType) {
+        this.animalType = animalType;
     }
 
     public double getWeight() {

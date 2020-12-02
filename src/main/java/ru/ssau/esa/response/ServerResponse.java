@@ -1,10 +1,11 @@
 package ru.ssau.esa.response;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public abstract class ServerResponse {
 
-    private static final Gson converter = new Gson();
+    private static final ObjectMapper converter = new ObjectMapper();
 
     private final boolean success;
     private final String message;
@@ -14,8 +15,21 @@ public abstract class ServerResponse {
         this.message = message;
     }
 
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
     @Override
     public String toString() {
-        return converter.toJson(this);
+        try {
+            return converter.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return "{\"success\": false, \"message\": \"Server Error\"}";
+        }
     }
 }

@@ -1,6 +1,6 @@
 package ru.ssau.esa.servlets.add;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.ssau.esa.bean.AnimalTypeDaoBean;
 import ru.ssau.esa.entity.AnimalType;
 import ru.ssau.esa.response.GoodResponse;
@@ -21,10 +21,14 @@ public class AnimalTypeAdd extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("application/json; charset=UTF-8");
         String name = req.getParameter("name");
         AnimalType type = new AnimalType();
         type.setName(name);
         AnimalType t = animalTypeDaoBean.add(type);
-        resp.getWriter().println(new GoodResponse(new Gson().toJson(t)));
+        ObjectMapper mapper = new ObjectMapper();
+        String answer = mapper.writeValueAsString(t);
+        resp.getWriter().println(new GoodResponse(answer));
     }
 }
